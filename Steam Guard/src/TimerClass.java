@@ -38,7 +38,7 @@ public class TimerClass {
 		public void run() {
 			secondsPassed++;
 			secon--;
-			System.out.println("Time left: " + secon);
+			System.out.println("Time left: " + secon + " sec." );
 			if(secon==0) {
 				secon = 5;
 			}
