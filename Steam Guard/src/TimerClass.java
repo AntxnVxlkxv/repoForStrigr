@@ -4,7 +4,7 @@ import java.util.*;
 
 public class TimerClass {
 	static int secondsPassed;
-	static int secon =5;
+	static int secon =6;
 	static Random r = new Random();
 
 	public int getSecondsPassed() {
@@ -21,34 +21,33 @@ public class TimerClass {
 
 	}
 
-	Timer timer = new Timer();
-	static TimerTask task = new TimerTask() {
-		public void run() {
-			char[] array = new char[26];
-			for (int i = 0; i < 5; i++) {
-				array[i] = (char) (r.nextInt(26) + 97);
-
-				System.out.print(array[i]);
-			}
-			System.out.println("");
-		}
-	};
-	static Timer timer1 = new Timer();
+	static Timer timer1 = new Timer(); // progrm měl od začátku odpočítavat od 5 do 1
 	static TimerTask task1 = new TimerTask() {
 		public void run() {
 			secondsPassed++;
 			secon--;
-			System.out.println("Time left: " + secon + " sec." );
 			if(secon==0) {
+				char[] array = new char[26];
+				for (int i = 0; i < 5; i++) {
+					array[i] = (char) (r.nextInt(26) + 97);
+					System.out.print(array[i]);
+				}
+				System.out.println("");
 				secon = 5;
 			}
+			System.out.println("Time left: " + secon + " sec." );
+			
 		}
 	};
 	public static void start1() {
 		timer1.scheduleAtFixedRate(task1, 1000, 1000);
 	}
-	public static void main() {
-		Timer timer = new Timer();
-		timer.scheduleAtFixedRate(task, 0, 5000);
-	}
+	
 }
+/*
+ * účelem originálního programu (podle mě) bylo odpočítat od 5 do 1 a pak vypsat
+ * náhodných 5 pímen. Zdůvodu dvou timerů ktreří běželi současně, dělal program
+ * neplechu (2. timer předbýhal 1.).takže jsem program upravil,
+ aby pracocal jen s jedním timerem. Plus program nejdříve odpočítával od 4 do 0.
+  
+ */
